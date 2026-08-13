@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- QuietShare mark: a pot holding one share. No type. -->
+  <path
+    d="M13 29 A 19.5 19.5 0 1 0 51 29"
+    stroke="#15803d"
+    stroke-width="8.5"
+    stroke-linecap="round"
+  />
+  <circle cx="32" cy="37" r="7.2" fill="#15803d"/>
+</svg>
