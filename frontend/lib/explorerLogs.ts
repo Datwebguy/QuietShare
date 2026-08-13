@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { COSTON2_EXPLORER_URL } from "./chain";
 
 // PotVault's Coston2 deployment block (from the explorer's getcontractcreation
-// API). The public RPC caps eth_getLogs at a 30-block range — nowhere near
+// API). The public RPC caps eth_getLogs at a 30-block range, nowhere near
 // enough to scan a contract's history in one call, and chunking into ~30-block
 // windows would mean well over a thousand requests over the contract's
 // lifetime. The block explorer's own logs API queries its indexed database
@@ -27,16 +27,25 @@ type ExplorerResponse = { status: string; message: string; result: ExplorerLog[]
 /** The explorer indexes blocks slightly behind the chain head, so a query for
  *  an event fired by a transaction that just got confirmed can transiently
  *  fail or come back empty for a moment. Retried with backoff rather than
- *  surfaced immediately — otherwise an action that actually succeeded on
+ *  surfaced immediately, otherwise an action that actually succeeded on
  *  chain (deposit/propose/approve) looks like it failed, when it's really
  *  just the follow-up list refresh racing the indexer. */
+// Blockscout returns status "0" with one of a few different messages for a
+// genuinely empty (not failed) query, depending on the endpoint/version.
+// Treating only "No records found" as the empty case was wrong: this
+// explorer actually returns "No logs found" for getLogs, so a totally
+// normal empty result (e.g. checking SpendExecuted on a proposal that
+// hasn't executed yet) was misread as an error, retried 4 times for
+// nothing, and then thrown, aborting the whole refresh.
+const EMPTY_RESULT_MESSAGES = ["no records found", "no logs found"];
+
 async function fetchLogsWithRetry(url: string, attempts = 4, delayMs = 1200): Promise<ExplorerResponse> {
   let lastError: unknown;
   for (let i = 0; i < attempts; i++) {
     try {
       const res = await fetch(url);
       const json = (await res.json()) as ExplorerResponse;
-      if (json.status === "1" || json.message === "No records found") {
+      if (json.status === "1" || EMPTY_RESULT_MESSAGES.includes((json.message ?? "").toLowerCase())) {
         return json;
       }
       lastError = new Error(typeof json.result === "string" ? json.result : json.message || "explorer log query failed");
@@ -76,14 +85,14 @@ export async function fetchVaultEvents(
 
   const json = await fetchLogsWithRetry(`${COSTON2_EXPLORER_URL}/api?${params.toString()}`);
 
-  if (json.message === "No records found" || !Array.isArray(json.result)) return [];
+  if (EMPTY_RESULT_MESSAGES.includes((json.message ?? "").toLowerCase()) || !Array.isArray(json.result)) return [];
 
   const decoded: DecodedVaultEvent[] = [];
   for (const log of json.result) {
     try {
       // Blockscout pads `topics` to a fixed 4-element array with `null` for
       // unused slots (an event with fewer indexed params than 3 still gets
-      // trailing nulls) — ethers.parseLog expects only the topics that
+      // trailing nulls). ethers.parseLog expects only the topics that
       // actually exist, and throws deep inside its ABI decoder on a literal
       // null entry rather than a clean "wrong shape" error.
       const topics = log.topics.filter((t): t is string => t !== null);
