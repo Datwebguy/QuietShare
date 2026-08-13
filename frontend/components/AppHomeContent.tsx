@@ -12,7 +12,7 @@ import { setMyUsername } from "@/lib/useUsernames";
 import { Logo } from "@/components/Logo";
 import { friendlyError } from "@/lib/friendlyError";
 
-// Below this, a create/join/spend tx is likely to fail on gas — shown as a
+// Below this, a create/join/spend tx is likely to fail on gas, shown as a
 // heads-up before someone hits the on-chain "insufficient funds" error blind,
 // not a hard cutoff (actual gas needed varies by tx).
 const LOW_GAS_THRESHOLD = ethers.parseEther("0.05");
@@ -120,7 +120,7 @@ export function AppHomeContent() {
     // A typed NAME is deliberately not accepted: potIdFromName() is
     // deterministic (same name -> same id for anyone), so treating a plain
     // name as an invite would let anyone join any pot just by guessing a
-    // common name like "Rent" — the invite link/ID is the only actual access
+    // common name like "Rent". The invite link/ID is the only actual access
     // control this app has, and this input must not accept anything weaker.
     const pasted = joinId.trim();
     const potId = pasted.includes("/pot/") ? pasted.slice(pasted.lastIndexOf("/pot/") + "/pot/".length) : pasted;
@@ -254,7 +254,7 @@ export function AppHomeContent() {
           </button>
         </div>
         <p className="mt-1.5 text-xs text-slate-400">
-          Shown to other pot members instead of your address. Visible to anyone — not a secret, just a label.
+          Shown to other pot members instead of your address. Visible to anyone, not a secret, just a label.
         </p>
 
         <div className="mt-3 flex items-center justify-between text-sm">

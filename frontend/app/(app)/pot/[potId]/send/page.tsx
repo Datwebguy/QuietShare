@@ -136,7 +136,7 @@ export default function SendPage() {
 
       {proposals.length === 0 && (
         <p className="mt-4 text-xs text-slate-400">
-          No pending proposals — or this list just hasn't caught up yet. If someone told you they proposed a payment
+          No pending proposals, or this list just hasn't caught up yet. If someone told you they proposed a payment
           and it's not showing, tap refresh above before assuming it didn't happen.
         </p>
       )}
@@ -145,11 +145,11 @@ export default function SendPage() {
         <ul className="mt-4 flex flex-col gap-2">
           {proposals.map((p) => {
             // The contract lets everyone approve regardless of the pot's
-            // current balance — it only checks funds at the moment the
+            // current balance. It only checks funds at the moment the
             // majority-crossing approval tries to execute. If the pot has
             // since been spent down below what this proposal asks for, that
             // final approval reverts on chain, and the only person who ever
-            // sees why is whoever's browser happened to trigger it — to
+            // sees why is whoever's browser happened to trigger it. To
             // everyone else the proposal just looks permanently stuck.
             // Surfacing it here means anyone looking at the list can see why.
             const insufficientFunds = !p.executed && potBalance !== null && p.amount > potBalance;
@@ -164,12 +164,12 @@ export default function SendPage() {
                     {p.memo && <p className="mt-0.5 text-xs text-slate-500">{p.memo}</p>}
                     <p className="mt-1 text-xs text-slate-400">
                       {p.executed
-                        ? "Sent automatically — check the recipient's wallet or the activity screen"
+                        ? "Sent automatically. Check the recipient's wallet or the activity screen"
                         : `${p.approvalCount} of ${members.length} approved · sends automatically once approved`}
                     </p>
                     {insufficientFunds && (
                       <p className="mt-1 text-xs text-red-600">
-                        The pot only holds {ethers.formatUnits(potBalance!, TOKEN_DECIMALS)} FXRP right now — this
+                        The pot only holds {ethers.formatUnits(potBalance!, TOKEN_DECIMALS)} FXRP right now, this
                         can't go out until someone deposits enough to cover it.
                       </p>
                     )}

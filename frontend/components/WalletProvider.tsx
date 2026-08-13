@@ -11,8 +11,8 @@ interface WalletState {
   connecting: boolean;
   // True only until the first session check (restoring a still-valid Web3Auth
   // session on load) settles. `address === null` is otherwise ambiguous
-  // between "haven't checked yet" and "checked, and you're logged out" —
-  // without this, every page that gates on isConnected briefly renders the
+  // between "haven't checked yet" and "checked, and you're logged out".
+  // Without this, every page that gates on isConnected briefly renders the
   // logged-out view on every refresh before flipping to the real one once
   // restoration finishes, which reads as a flash of the login screen.
   initializing: boolean;
@@ -62,7 +62,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
         const web3auth = await getWeb3Auth();
 
         // Session already restored by initModal() (e.g. a page reload with a
-        // still-valid Web3Auth session) — pick it up without another login click.
+        // still-valid Web3Auth session), pick it up without another login click.
         if (web3auth.connected) {
           await rebuildSigner();
         }

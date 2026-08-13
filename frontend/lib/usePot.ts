@@ -558,9 +558,12 @@ export function usePot(potId: string) {
   // to ask again without one.
   async function refreshProposalsManually() {
     setRefreshingProposals(true);
+    setError(null);
     try {
       const list = await refreshProposals();
       await refreshActivity(list);
+    } catch (e) {
+      setError(friendlyError(e));
     } finally {
       setRefreshingProposals(false);
     }
@@ -568,8 +571,11 @@ export function usePot(potId: string) {
 
   async function refreshMembersManually() {
     setRefreshingMembers(true);
+    setError(null);
     try {
       await refreshMembers();
+    } catch (e) {
+      setError(friendlyError(e));
     } finally {
       setRefreshingMembers(false);
     }
@@ -577,8 +583,11 @@ export function usePot(potId: string) {
 
   async function refreshActivityManually() {
     setRefreshingActivity(true);
+    setError(null);
     try {
       await refreshActivity();
+    } catch (e) {
+      setError(friendlyError(e));
     } finally {
       setRefreshingActivity(false);
     }

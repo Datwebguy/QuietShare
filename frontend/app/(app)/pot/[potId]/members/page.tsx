@@ -7,7 +7,7 @@ import { useUsernames, nameOrShort } from "@/lib/useUsernames";
 import { CONTRACTS, COSTON2_EXPLORER_URL } from "@/lib/chain";
 
 export default function MembersPage() {
-  const { members, address, signer, refreshingMembers, refreshMembersManually } = usePotContext();
+  const { members, address, signer, refreshingMembers, refreshMembersManually, error } = usePotContext();
   const { displayName } = useUsernames(signer, members);
   const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
 
@@ -41,6 +41,7 @@ export default function MembersPage() {
           </button>
         </div>
         <p className="mt-1 text-xs text-slate-400">Tap the copy icon to grab an address for the Send screen.</p>
+        {error && <p className="mt-3 rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
         <ul className="mt-2 flex flex-col divide-y divide-slate-100">
           {members.map((m) => {
             const isMe = !!address && m.toLowerCase() === address.toLowerCase();

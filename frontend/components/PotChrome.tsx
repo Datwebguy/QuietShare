@@ -69,7 +69,7 @@ export function PotChrome({ children }: { children: React.ReactNode }) {
       </header>
 
       {/* A friend arriving via a shared invite link/QR code has neither logged
-          in nor joined yet — without these, every screen below would just
+          in nor joined yet. Without these, every screen below would just
           look empty with no indication why, or no way to fix it. */}
       {!address && (
         <section className="rounded-2xl border border-pot-200 bg-pot-50 p-4 text-center">

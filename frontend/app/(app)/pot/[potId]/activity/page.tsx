@@ -7,7 +7,7 @@ import { useUsernames, nameOrShort } from "@/lib/useUsernames";
 import { COSTON2_EXPLORER_URL } from "@/lib/chain";
 
 export default function ActivityPage() {
-  const { activity, address, signer, refreshingActivity, refreshActivityManually } = usePotContext();
+  const { activity, address, signer, refreshingActivity, refreshActivityManually, error } = usePotContext();
   const { displayName } = useUsernames(
     signer,
     activity.map((item) => item.who)
@@ -64,9 +64,10 @@ export default function ActivityPage() {
             </svg>
           </button>
         </div>
+        {error && <p className="mt-3 rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
         {activity.length === 0 ? (
           <p className="mt-1 text-xs text-slate-400">
-            No deposits or payouts yet — or this list just hasn't caught up yet. If someone told you they deposited or a
+            No deposits or payouts yet, or this list just hasn't caught up yet. If someone told you they deposited or a
             payment went out and it's not showing, tap refresh above before assuming it didn't happen.
           </p>
         ) : (
