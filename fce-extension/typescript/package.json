@@ -1,0 +1,29 @@
+{
+  "name": "quietshare-fce-extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "QuietShare's Flare Confidential Compute extension (private per-member pot ledger)",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "keygen": "tsx scripts/keygen.ts",
+    "demo": "tsx watch --env-file=../config/extension.env src/local-demo-server.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "eth-crypto": "^2.7.0",
+    "express": "^4.19.2",
+    "viem": "2.21.55"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "22.10.2",
+    "tsx": "^4.15.6",
+    "typescript": "5.7.2",
+    "vitest": "2.1.8"
+  }
+}

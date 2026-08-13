@@ -1,0 +1,22 @@
+app = "quietshare-demo-tee"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile.demo"
+
+[http_service]
+  internal_port = 8090
+  force_https = true
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  # MUST stay at exactly 1. local-demo-server.ts keeps the private ledger in
+  # plain process memory with no shared store — Fly's default HA behavior
+  # launches 2 machines with no session affinity, so requests silently
+  # round-robin between two independent ledgers (a deposit recorded on one
+  # machine vanishes when a balance read lands on the other). If a deploy
+  # ever re-adds a second machine, run `flyctl scale count 1` immediately.
+  min_machines_running = 1
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

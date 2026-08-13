@@ -1,0 +1,16 @@
+.claude/
+node_modules/
+dist/
+.next/
+out/
+.env
+.env.local
+!*.env.example
+!.env.local.example
+fce-extension/config/extension.env
+*.log
+*.tsbuildinfo
+coverage/
+typechain-types/
+artifacts/
+cache/

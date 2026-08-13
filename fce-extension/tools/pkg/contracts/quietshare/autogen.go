@@ -1,0 +1,421 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated binding and any manual changes will be lost.
+
+package quietshare
+
+import (
+	"errors"
+	"math/big"
+	"strings"
+
+	ethereum "github.com/ethereum/go-ethereum"
+	"github.com/ethereum/go-ethereum/accounts/abi"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethereum/go-ethereum/event"
+)
+
+// Reference imports to suppress errors if they are not otherwise used.
+var (
+	_ = errors.New
+	_ = big.NewInt
+	_ = strings.NewReader
+	_ = ethereum.NotFound
+	_ = bind.Bind
+	_ = common.Big1
+	_ = types.BloomLookup
+	_ = event.NewSubscription
+	_ = abi.ConvertType
+)
+
+// QuietShareInstructionSenderMetaData contains all meta data concerning the QuietShareInstructionSender contract.
+var QuietShareInstructionSenderMetaData = &bind.MetaData{
+	ABI: "[{\"type\":\"constructor\",\"inputs\":[{\"name\":\"_teeExtensionRegistry\",\"type\":\"address\",\"internalType\":\"contractITeeExtensionRegistry\"},{\"name\":\"_teeMachineRegistry\",\"type\":\"address\",\"internalType\":\"contractITeeMachineRegistry\"}],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"OP_COMMAND_GET_BALANCE\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"OP_COMMAND_RECORD_DEPOSIT\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"OP_TYPE_QUIETSHARE\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"TEE_EXTENSION_REGISTRY\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"contractITeeExtensionRegistry\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"TEE_MACHINE_REGISTRY\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"contractITeeMachineRegistry\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"sendGetBalance\",\"inputs\":[{\"name\":\"potId\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"outputs\":[{\"name\":\"instructionId\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"sendRecordDeposit\",\"inputs\":[{\"name\":\"potId\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"},{\"name\":\"encryptedNote\",\"type\":\"bytes\",\"internalType\":\"bytes\"}],\"outputs\":[],\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"setExtensionId\",\"inputs\":[],\"outputs\":[],\"stateMutability\":\"nonpayable\"}]",
+	Bin: "0x60c06040523461006c5761001a61001461017b565b90610486565b610022610071565b61139e610533823960805181818161014601528181610b8b01528181610e9e01528181610f2701526111e1015260a05181818161037a01528181610a3001526110a2015261139e90f35b610077565b60405190565b5f80fd5b601f801991011690565b634e487b7160e01b5f52604160045260245ffd5b906100a39061007b565b810190811060018060401b038211176100bb57604052565b610085565b906100d36100cc610071565b9283610099565b565b5f80fd5b60018060a01b031690565b6100ed906100d9565b90565b6100f9906100e4565b90565b610105816100f0565b0361010c57565b5f80fd5b9050519061011d826100fc565b565b610128906100e4565b90565b6101348161011f565b0361013b57565b5f80fd5b9050519061014c8261012b565b565b9190604083820312610176578061016a610173925f8601610110565b9360200161013f565b90565b6100d5565b6101996118d18038038061018e816100c0565b92833981019061014e565b9091565b90565b6101b46101af6101b9926100d9565b61019d565b6100d9565b90565b6101c5906101a0565b90565b6101d1906101bc565b90565b90565b6101eb6101e66101f0926101d4565b61019d565b6100d9565b90565b6101fc906101d7565b90565b60209181520190565b60207f65726f2061646472657373000000000000000000000000000000000000000000917f546565457874656e73696f6e52656769737472792063616e6e6f74206265207a5f8201520152565b610262602b6040926101ff565b61026b81610208565b0190565b6102849060208101905f818303910152610255565b90565b1561028e57565b610296610071565b62461bcd60e51b8152806102ac6004820161026f565b0390fd5b6102b9906101bc565b90565b60207f6f20616464726573730000000000000000000000000000000000000000000000917f5465654d616368696e6552656769737472792063616e6e6f74206265207a65725f8201520152565b61031660296040926101ff565b61031f816102bc565b0190565b6103389060208101905f818303910152610309565b90565b1561034257565b61034a610071565b62461bcd60e51b81528061036060048201610323565b0390fd5b90565b61037b610376610380926101d4565b61019d565b610364565b90565b5f7f546565457874656e73696f6e526567697374727920686173206e6f20636f6465910152565b6103b6602080926101ff565b6103bf81610383565b0190565b6103d89060208101905f8183039101526103aa565b90565b156103e257565b6103ea610071565b62461bcd60e51b815280610400600482016103c3565b0390fd5b5f7f5465654d616368696e65526567697374727920686173206e6f20636f64650000910152565b610438601e6020926101ff565b61044181610404565b0190565b61045a9060208101905f81830391015261042b565b90565b1561046457565b61046c610071565b62461bcd60e51b81528061048260048201610445565b0390fd5b6104b3610492826101c8565b6104ac6104a66104a15f6101f3565b6100e4565b916100e4565b1415610287565b6104e06104bf836102b0565b6104d96104d36104ce5f6101f3565b6100e4565b916100e4565b141561033b565b6105056104ec826101c8565b3b6104ff6104f95f610367565b91610364565b116103db565b61052a610511836102b0565b3b61052461051e5f610367565b91610364565b1161045d565b60805260a05256fe60806040526004361015610013575b6104a4565b61001d5f3561009c565b80631bc38f7014610097578063347595131461009257806377e572821461008d578063aa5032c614610088578063b754704f14610083578063d77798a91461007e578063de0a9159146100795763f2ab21120361000e5761046f565b61041d565b6103ca565b610343565b6102e8565b6102be565b6101cc565b61010f565b60e01c90565b60405190565b5f80fd5b5f80fd5b5f9103126100ba57565b6100ac565b6d149150d3d49117d1115413d4d25560921b90565b6100dc6100bf565b90565b6100e76100d4565b90565b90565b6100f6906100ea565b9052565b919061010d905f602085019401906100ed565b565b3461013f5761011f3660046100b0565b61013b61012a6100df565b6101326100a2565b918291826100fa565b0390f35b6100a8565b7f000000000000000000000000000000000000000000000000000000000000000090565b60018060a01b031690565b90565b61018a61018561018f92610168565b610173565b610168565b90565b61019b90610176565b90565b6101a790610192565b90565b6101b39061019e565b9052565b91906101ca905f602085019401906101aa565b565b346101fc576101dc3660046100b0565b6101f86101e7610144565b6101ef6100a2565b918291826101b7565b0390f35b6100a8565b5f80fd5b61020e816100ea565b0361021557565b5f80fd5b9050359061022682610205565b565b5f80fd5b5f80fd5b5f80fd5b909182601f8301121561026e5781359167ffffffffffffffff831161026957602001926001830284011161026457565b610230565b61022c565b610228565b9190916040818403126102b45761028c835f8301610219565b92602082013567ffffffffffffffff81116102af576102ab9201610234565b9091565b610201565b6100ac565b5f0190565b6102d26102cc366004610273565b91610a2a565b6102da6100a2565b806102e4816102b9565b0390f35b34610316576102f83660046100b0565b610300610e70565b6103086100a2565b80610312816102b9565b0390f35b6100a8565b6a4745545f42414c414e434560a81b90565b61033561031b565b90565b61034061032d565b90565b34610373576103533660046100b0565b61036f61035e610338565b6103666100a2565b918291826100fa565b0390f35b6100a8565b7f000000000000000000000000000000000000000000000000000000000000000090565b6103a590610192565b90565b6103b19061039c565b9052565b91906103c8905f602085019401906103a8565b565b346103fa576103da3660046100b0565b6103f66103e5610378565b6103ed6100a2565b918291826103b5565b0390f35b6100a8565b9060208282031261041857610415915f01610219565b90565b6100ac565b61044461043361042e3660046103ff565b611094565b61043b6100a2565b918291826100fa565b0390f35b695155494554534841524560b01b90565b610461610448565b90565b61046c610459565b90565b3461049f5761047f3660046100b0565b61049b61048a610464565b6104926100a2565b918291826100fa565b0390f35b6100a8565b5f80fd5b601f801991011690565b634e487b7160e01b5f52604160045260245ffd5b906104d0906104a8565b810190811067ffffffffffffffff8211176104ea57604052565b6104b2565b60e01b90565b906105086105016100a2565b92836104c6565b565b67ffffffffffffffff81116105225760208091020190565b6104b2565b61053090610168565b90565b61053c81610527565b0361054357565b5f80fd5b9050519061055482610533565b565b9092919261056b6105668261050a565b6104f5565b93818552602080860192028301928184116105a857915b83831061058f5750505050565b6020809161059d8486610547565b815201920191610582565b610230565b9080601f830112156105cb578160206105c893519101610556565b90565b610228565b90602082820312610600575f82015167ffffffffffffffff81116105fb576105f892016105ad565b90565b610201565b6100ac565b90565b61061190610605565b9052565b90565b61062c61062761063192610615565b610173565b610605565b90565b61063d90610618565b9052565b91602061066292949361065b60408201965f830190610608565b0190610634565b565b61066c6100a2565b3d5f823e3d90fd5b90565b61068b61068661069092610674565b610173565b610605565b90565b906106a56106a08361050a565b6104f5565b918252565b369037565b906106d46106bc83610693565b926020806106ca869361050a565b92019103906106aa565b565b6106e060606104f5565b90565b906106ed906100ea565b9052565b906106fb90610527565b9052565b5f80fd5b67ffffffffffffffff81116107215761071d6020916104a8565b0190565b6104b2565b90825f939282370152565b9092919261074661074182610703565b6104f5565b938185526020850190828401116107625761076092610726565b565b6106ff565b610772913691610731565b90565b52565b610781906100ea565b9052565b61078e90610527565b9052565b5190565b60209181520190565b90825f9392825e0152565b6107c96107d26020936107d7936107c081610792565b93848093610796565b9586910161079f565b6104a8565b0190565b61081891604060608201926107f65f8201515f850190610778565b61080860208201516020850190610785565b01519060408184039101526107aa565b90565b6108309160208201915f8184039101526107db565b90565b61083d60c06104f5565b90565b52565b67ffffffffffffffff1690565b61086461085f61086992610674565b610173565b610843565b90565b9061087690610843565b9052565b9050519061088782610205565b565b906020828203126108a25761089f915f0161087a565b90565b6100ac565b5190565b60209181520190565b60200190565b906108c781602093610785565b0190565b60200190565b906108ee6108e86108e1846108a7565b80936108ab565b926108b4565b905f5b8181106108fe5750505090565b90919261091761091160019286516108ba565b946108cb565b91019190916108f1565b60209181520190565b9061094761094161093a846108a7565b8093610921565b926108b4565b905f5b8181106109575750505090565b90919261097061096a60019286516108ba565b946108cb565b910191909161094a565b61098390610843565b9052565b906109fc9060a0806109df6109cd60c085016109a95f8901515f880190610778565b6109bb60208901516020880190610778565b604088015186820360408801526107aa565b6060870151858203606087015261092a565b946109f26080820151608086019061097a565b0151910190610785565b90565b9091610a19610a279360408401908482035f8601526108d1565b916020818403910152610987565b90565b90610a547f000000000000000000000000000000000000000000000000000000000000000061039c565b915f63feeabcbf93610a6461132e565b90610a82600196610a8d610a766100a2565b988995869485946104ef565b845260048401610641565b03915afa918215610c4757610b7d610b74610b8693610b6f610b2c610b665f9860209a8a91610c25575b509a610b3a610acd610ac88c610677565b6106af565b91610b19610b10610adc610459565b9b610ae56100d4565b9993610b0b33929192610b02610af96106d6565b975f89016106e3565b602087016106f1565b610767565b60408301610775565b610b216100a2565b9485918e830161081b565b8d82018103825203846104c6565b91610b5d8a95610b55339a610b4d610833565b9d8e016106e3565b8c8c016106e3565b60408a01610775565b60608801610840565b610850565b6080850161086c565b60a083016106f1565b610baf7f000000000000000000000000000000000000000000000000000000000000000061019e565b92610bd763f731df539134959295909395610be2610bcb6100a2565b978896879586946104ef565b8452600484016109ff565b03925af18015610c2057610bf4575b50565b610c149060203d8111610c19575b610c0c81836104c6565b810190610889565b610bf1565b503d610c02565b610664565b610c4191503d808c833e610c3981836104c6565b8101906105d0565b5f610ab7565b610664565b5f1c90565b90565b610c60610c6591610c4c565b610c51565b90565b610c729054610c54565b90565b60209181520190565b5f7f457874656e73696f6e20494420616c7265616479207365742e00000000000000910152565b610cb26019602092610c75565b610cbb81610c7e565b0190565b610cd49060208101905f818303910152610ca5565b90565b15610cde57565b610ce66100a2565b62461bcd60e51b815280610cfc60048201610cbf565b0390fd5b610d0981610605565b03610d1057565b5f80fd5b90505190610d2182610d00565b565b90602082820312610d3c57610d39915f01610d14565b90565b6100ac565b90565b610d58610d53610d5d92610d41565b610173565b610605565b90565b610d6c62010000610d44565b90565b6001610d7b9101610605565b90565b90602082820312610d9757610d94915f01610547565b90565b6100ac565b9190610daf905f60208501940190610608565b565b610dba90610192565b90565b5f1b90565b90610dce5f1991610dbd565b9181191691161790565b610dec610de7610df192610605565b610173565b610605565b90565b90565b90610e0c610e07610e1392610dd8565b610df4565b8254610dc2565b9055565b5f7f457874656e73696f6e204944206e6f7420666f756e642e000000000000000000910152565b610e4b6017602092610c75565b610e5481610e17565b0190565b610e6d9060208101905f818303910152610e3e565b90565b610e94610e7c5f610c68565b610e8e610e885f610677565b91610605565b14610cd7565b610ed86020610ec27f000000000000000000000000000000000000000000000000000000000000000061019e565b6327582ad590610ed06100a2565b9384926104ef565b82528180610ee8600482016102b9565b03915afa908115611045575f91611017575b50610f03610d60565b5b80610f17610f1184610605565b91610605565b1015610ff557610f756020610f4b7f000000000000000000000000000000000000000000000000000000000000000061019e565b632c17735890610f6a8592610f5e6100a2565b958694859384936104ef565b835260048301610d9c565b03915afa908115610ff0575f91610fc2575b50610fa2610f9c610f9730610db1565b610527565b91610527565b14610fb557610fb090610d6f565b610f04565b610fc091505f610df7565b565b610fe3915060203d8111610fe9575b610fdb81836104c6565b810190610d7e565b5f610f87565b503d610fd1565b610664565b610ffd6100a2565b62461bcd60e51b81528061101360048201610e58565b0390fd5b611038915060203d811161103e575b61103081836104c6565b810190610d23565b5f610efa565b503d611026565b610664565b5f90565b61105860406104f5565b90565b9060208061107d936110735f8201515f860190610778565b0151910190610785565b565b9190611092905f6040850194019061105b565b565b61109c61104a565b506110c67f000000000000000000000000000000000000000000000000000000000000000061039c565b5f63feeabcbf916110d561132e565b906110f36001946110fe6110e76100a2565b968795869485946104ef565b845260048401610641565b03915afa80156112a3576111dc5f916020938391611281575b50936111d36111ca61113061112b86610677565b6106af565b926111c56111826111bc611142610459565b9661119061114e61032d565b9561116f3361116761115e61104e565b938f85016106e3565b8e83016106f1565b6111776100a2565b9485918e830161107f565b8d82018103825203846104c6565b916111b38a956111ab339a6111a3610833565b9d8e016106e3565b8c8c016106e3565b60408a01610775565b60608801610840565b610850565b6080850161086c565b60a083016106f1565b6112057f000000000000000000000000000000000000000000000000000000000000000061019e565b9261122d63f731df5391349592959093956112386112216100a2565b978896879586946104ef565b8452600484016109ff565b03925af190811561127c575f9161124e575b5090565b61126f915060203d8111611275575b61126781836104c6565b810190610889565b5f61124a565b503d61125d565b610664565b61129d91503d8085833e61129581836104c6565b8101906105d0565b5f611117565b610664565b5f90565b5f7f457874656e73696f6e204944206973206e6f74207365742e0000000000000000910152565b6112e06018602092610c75565b6112e9816112ac565b0190565b6113029060208101905f8183039101526112d3565b90565b1561130c57565b6113146100a2565b62461bcd60e51b81528061132a600482016112ed565b0390fd5b6113366112a8565b5061135c6113435f610c68565b61135561134f5f610677565b91610605565b1415611305565b6113655f610c68565b9056fea2646970667358221220e00750c3228bee609d6d1cc2f04111e3dea838cc0958d69b053320992d28c71564736f6c634300081d0033",
+}
+
+// QuietShareInstructionSenderABI is the input ABI used to generate the binding from.
+// Deprecated: Use QuietShareInstructionSenderMetaData.ABI instead.
+var QuietShareInstructionSenderABI = QuietShareInstructionSenderMetaData.ABI
+
+// QuietShareInstructionSenderBin is the compiled bytecode used for deploying new contracts.
+// Deprecated: Use QuietShareInstructionSenderMetaData.Bin instead.
+var QuietShareInstructionSenderBin = QuietShareInstructionSenderMetaData.Bin
+
+// DeployQuietShareInstructionSender deploys a new Ethereum contract, binding an instance of QuietShareInstructionSender to it.
+func DeployQuietShareInstructionSender(auth *bind.TransactOpts, backend bind.ContractBackend, _teeExtensionRegistry common.Address, _teeMachineRegistry common.Address) (common.Address, *types.Transaction, *QuietShareInstructionSender, error) {
+	parsed, err := QuietShareInstructionSenderMetaData.GetAbi()
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	if parsed == nil {
+		return common.Address{}, nil, nil, errors.New("GetABI returned nil")
+	}
+
+	address, tx, contract, err := bind.DeployContract(auth, *parsed, common.FromHex(QuietShareInstructionSenderBin), backend, _teeExtensionRegistry, _teeMachineRegistry)
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	return address, tx, &QuietShareInstructionSender{QuietShareInstructionSenderCaller: QuietShareInstructionSenderCaller{contract: contract}, QuietShareInstructionSenderTransactor: QuietShareInstructionSenderTransactor{contract: contract}, QuietShareInstructionSenderFilterer: QuietShareInstructionSenderFilterer{contract: contract}}, nil
+}
+
+// QuietShareInstructionSender is an auto generated Go binding around an Ethereum contract.
+type QuietShareInstructionSender struct {
+	QuietShareInstructionSenderCaller     // Read-only binding to the contract
+	QuietShareInstructionSenderTransactor // Write-only binding to the contract
+	QuietShareInstructionSenderFilterer   // Log filterer for contract events
+}
+
+// QuietShareInstructionSenderCaller is an auto generated read-only Go binding around an Ethereum contract.
+type QuietShareInstructionSenderCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// QuietShareInstructionSenderTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type QuietShareInstructionSenderTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// QuietShareInstructionSenderFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type QuietShareInstructionSenderFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// QuietShareInstructionSenderSession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type QuietShareInstructionSenderSession struct {
+	Contract     *QuietShareInstructionSender // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts                // Call options to use throughout this session
+	TransactOpts bind.TransactOpts            // Transaction auth options to use throughout this session
+}
+
+// QuietShareInstructionSenderCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type QuietShareInstructionSenderCallerSession struct {
+	Contract *QuietShareInstructionSenderCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts                      // Call options to use throughout this session
+}
+
+// QuietShareInstructionSenderTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type QuietShareInstructionSenderTransactorSession struct {
+	Contract     *QuietShareInstructionSenderTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts                      // Transaction auth options to use throughout this session
+}
+
+// QuietShareInstructionSenderRaw is an auto generated low-level Go binding around an Ethereum contract.
+type QuietShareInstructionSenderRaw struct {
+	Contract *QuietShareInstructionSender // Generic contract binding to access the raw methods on
+}
+
+// QuietShareInstructionSenderCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type QuietShareInstructionSenderCallerRaw struct {
+	Contract *QuietShareInstructionSenderCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// QuietShareInstructionSenderTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type QuietShareInstructionSenderTransactorRaw struct {
+	Contract *QuietShareInstructionSenderTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewQuietShareInstructionSender creates a new instance of QuietShareInstructionSender, bound to a specific deployed contract.
+func NewQuietShareInstructionSender(address common.Address, backend bind.ContractBackend) (*QuietShareInstructionSender, error) {
+	contract, err := bindQuietShareInstructionSender(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &QuietShareInstructionSender{QuietShareInstructionSenderCaller: QuietShareInstructionSenderCaller{contract: contract}, QuietShareInstructionSenderTransactor: QuietShareInstructionSenderTransactor{contract: contract}, QuietShareInstructionSenderFilterer: QuietShareInstructionSenderFilterer{contract: contract}}, nil
+}
+
+// NewQuietShareInstructionSenderCaller creates a new read-only instance of QuietShareInstructionSender, bound to a specific deployed contract.
+func NewQuietShareInstructionSenderCaller(address common.Address, caller bind.ContractCaller) (*QuietShareInstructionSenderCaller, error) {
+	contract, err := bindQuietShareInstructionSender(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &QuietShareInstructionSenderCaller{contract: contract}, nil
+}
+
+// NewQuietShareInstructionSenderTransactor creates a new write-only instance of QuietShareInstructionSender, bound to a specific deployed contract.
+func NewQuietShareInstructionSenderTransactor(address common.Address, transactor bind.ContractTransactor) (*QuietShareInstructionSenderTransactor, error) {
+	contract, err := bindQuietShareInstructionSender(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &QuietShareInstructionSenderTransactor{contract: contract}, nil
+}
+
+// NewQuietShareInstructionSenderFilterer creates a new log filterer instance of QuietShareInstructionSender, bound to a specific deployed contract.
+func NewQuietShareInstructionSenderFilterer(address common.Address, filterer bind.ContractFilterer) (*QuietShareInstructionSenderFilterer, error) {
+	contract, err := bindQuietShareInstructionSender(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &QuietShareInstructionSenderFilterer{contract: contract}, nil
+}
+
+// bindQuietShareInstructionSender binds a generic wrapper to an already deployed contract.
+func bindQuietShareInstructionSender(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := QuietShareInstructionSenderMetaData.GetAbi()
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, *parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_QuietShareInstructionSender *QuietShareInstructionSenderRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _QuietShareInstructionSender.Contract.QuietShareInstructionSenderCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_QuietShareInstructionSender *QuietShareInstructionSenderRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _QuietShareInstructionSender.Contract.QuietShareInstructionSenderTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_QuietShareInstructionSender *QuietShareInstructionSenderRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _QuietShareInstructionSender.Contract.QuietShareInstructionSenderTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_QuietShareInstructionSender *QuietShareInstructionSenderCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _QuietShareInstructionSender.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_QuietShareInstructionSender *QuietShareInstructionSenderTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _QuietShareInstructionSender.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_QuietShareInstructionSender *QuietShareInstructionSenderTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _QuietShareInstructionSender.Contract.contract.Transact(opts, method, params...)
+}
+
+// OPCOMMANDGETBALANCE is a free data retrieval call binding the contract method 0xb754704f.
+//
+// Solidity: function OP_COMMAND_GET_BALANCE() view returns(bytes32)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderCaller) OPCOMMANDGETBALANCE(opts *bind.CallOpts) ([32]byte, error) {
+	var out []interface{}
+	err := _QuietShareInstructionSender.contract.Call(opts, &out, "OP_COMMAND_GET_BALANCE")
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// OPCOMMANDGETBALANCE is a free data retrieval call binding the contract method 0xb754704f.
+//
+// Solidity: function OP_COMMAND_GET_BALANCE() view returns(bytes32)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderSession) OPCOMMANDGETBALANCE() ([32]byte, error) {
+	return _QuietShareInstructionSender.Contract.OPCOMMANDGETBALANCE(&_QuietShareInstructionSender.CallOpts)
+}
+
+// OPCOMMANDGETBALANCE is a free data retrieval call binding the contract method 0xb754704f.
+//
+// Solidity: function OP_COMMAND_GET_BALANCE() view returns(bytes32)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderCallerSession) OPCOMMANDGETBALANCE() ([32]byte, error) {
+	return _QuietShareInstructionSender.Contract.OPCOMMANDGETBALANCE(&_QuietShareInstructionSender.CallOpts)
+}
+
+// OPCOMMANDRECORDDEPOSIT is a free data retrieval call binding the contract method 0x1bc38f70.
+//
+// Solidity: function OP_COMMAND_RECORD_DEPOSIT() view returns(bytes32)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderCaller) OPCOMMANDRECORDDEPOSIT(opts *bind.CallOpts) ([32]byte, error) {
+	var out []interface{}
+	err := _QuietShareInstructionSender.contract.Call(opts, &out, "OP_COMMAND_RECORD_DEPOSIT")
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// OPCOMMANDRECORDDEPOSIT is a free data retrieval call binding the contract method 0x1bc38f70.
+//
+// Solidity: function OP_COMMAND_RECORD_DEPOSIT() view returns(bytes32)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderSession) OPCOMMANDRECORDDEPOSIT() ([32]byte, error) {
+	return _QuietShareInstructionSender.Contract.OPCOMMANDRECORDDEPOSIT(&_QuietShareInstructionSender.CallOpts)
+}
+
+// OPCOMMANDRECORDDEPOSIT is a free data retrieval call binding the contract method 0x1bc38f70.
+//
+// Solidity: function OP_COMMAND_RECORD_DEPOSIT() view returns(bytes32)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderCallerSession) OPCOMMANDRECORDDEPOSIT() ([32]byte, error) {
+	return _QuietShareInstructionSender.Contract.OPCOMMANDRECORDDEPOSIT(&_QuietShareInstructionSender.CallOpts)
+}
+
+// OPTYPEQUIETSHARE is a free data retrieval call binding the contract method 0xf2ab2112.
+//
+// Solidity: function OP_TYPE_QUIETSHARE() view returns(bytes32)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderCaller) OPTYPEQUIETSHARE(opts *bind.CallOpts) ([32]byte, error) {
+	var out []interface{}
+	err := _QuietShareInstructionSender.contract.Call(opts, &out, "OP_TYPE_QUIETSHARE")
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// OPTYPEQUIETSHARE is a free data retrieval call binding the contract method 0xf2ab2112.
+//
+// Solidity: function OP_TYPE_QUIETSHARE() view returns(bytes32)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderSession) OPTYPEQUIETSHARE() ([32]byte, error) {
+	return _QuietShareInstructionSender.Contract.OPTYPEQUIETSHARE(&_QuietShareInstructionSender.CallOpts)
+}
+
+// OPTYPEQUIETSHARE is a free data retrieval call binding the contract method 0xf2ab2112.
+//
+// Solidity: function OP_TYPE_QUIETSHARE() view returns(bytes32)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderCallerSession) OPTYPEQUIETSHARE() ([32]byte, error) {
+	return _QuietShareInstructionSender.Contract.OPTYPEQUIETSHARE(&_QuietShareInstructionSender.CallOpts)
+}
+
+// TEEEXTENSIONREGISTRY is a free data retrieval call binding the contract method 0x34759513.
+//
+// Solidity: function TEE_EXTENSION_REGISTRY() view returns(address)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderCaller) TEEEXTENSIONREGISTRY(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _QuietShareInstructionSender.contract.Call(opts, &out, "TEE_EXTENSION_REGISTRY")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// TEEEXTENSIONREGISTRY is a free data retrieval call binding the contract method 0x34759513.
+//
+// Solidity: function TEE_EXTENSION_REGISTRY() view returns(address)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderSession) TEEEXTENSIONREGISTRY() (common.Address, error) {
+	return _QuietShareInstructionSender.Contract.TEEEXTENSIONREGISTRY(&_QuietShareInstructionSender.CallOpts)
+}
+
+// TEEEXTENSIONREGISTRY is a free data retrieval call binding the contract method 0x34759513.
+//
+// Solidity: function TEE_EXTENSION_REGISTRY() view returns(address)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderCallerSession) TEEEXTENSIONREGISTRY() (common.Address, error) {
+	return _QuietShareInstructionSender.Contract.TEEEXTENSIONREGISTRY(&_QuietShareInstructionSender.CallOpts)
+}
+
+// TEEMACHINEREGISTRY is a free data retrieval call binding the contract method 0xd77798a9.
+//
+// Solidity: function TEE_MACHINE_REGISTRY() view returns(address)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderCaller) TEEMACHINEREGISTRY(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _QuietShareInstructionSender.contract.Call(opts, &out, "TEE_MACHINE_REGISTRY")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// TEEMACHINEREGISTRY is a free data retrieval call binding the contract method 0xd77798a9.
+//
+// Solidity: function TEE_MACHINE_REGISTRY() view returns(address)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderSession) TEEMACHINEREGISTRY() (common.Address, error) {
+	return _QuietShareInstructionSender.Contract.TEEMACHINEREGISTRY(&_QuietShareInstructionSender.CallOpts)
+}
+
+// TEEMACHINEREGISTRY is a free data retrieval call binding the contract method 0xd77798a9.
+//
+// Solidity: function TEE_MACHINE_REGISTRY() view returns(address)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderCallerSession) TEEMACHINEREGISTRY() (common.Address, error) {
+	return _QuietShareInstructionSender.Contract.TEEMACHINEREGISTRY(&_QuietShareInstructionSender.CallOpts)
+}
+
+// SendGetBalance is a paid mutator transaction binding the contract method 0xde0a9159.
+//
+// Solidity: function sendGetBalance(bytes32 potId) payable returns(bytes32 instructionId)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderTransactor) SendGetBalance(opts *bind.TransactOpts, potId [32]byte) (*types.Transaction, error) {
+	return _QuietShareInstructionSender.contract.Transact(opts, "sendGetBalance", potId)
+}
+
+// SendGetBalance is a paid mutator transaction binding the contract method 0xde0a9159.
+//
+// Solidity: function sendGetBalance(bytes32 potId) payable returns(bytes32 instructionId)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderSession) SendGetBalance(potId [32]byte) (*types.Transaction, error) {
+	return _QuietShareInstructionSender.Contract.SendGetBalance(&_QuietShareInstructionSender.TransactOpts, potId)
+}
+
+// SendGetBalance is a paid mutator transaction binding the contract method 0xde0a9159.
+//
+// Solidity: function sendGetBalance(bytes32 potId) payable returns(bytes32 instructionId)
+func (_QuietShareInstructionSender *QuietShareInstructionSenderTransactorSession) SendGetBalance(potId [32]byte) (*types.Transaction, error) {
+	return _QuietShareInstructionSender.Contract.SendGetBalance(&_QuietShareInstructionSender.TransactOpts, potId)
+}
+
+// SendRecordDeposit is a paid mutator transaction binding the contract method 0x77e57282.
+//
+// Solidity: function sendRecordDeposit(bytes32 potId, bytes encryptedNote) payable returns()
+func (_QuietShareInstructionSender *QuietShareInstructionSenderTransactor) SendRecordDeposit(opts *bind.TransactOpts, potId [32]byte, encryptedNote []byte) (*types.Transaction, error) {
+	return _QuietShareInstructionSender.contract.Transact(opts, "sendRecordDeposit", potId, encryptedNote)
+}
+
+// SendRecordDeposit is a paid mutator transaction binding the contract method 0x77e57282.
+//
+// Solidity: function sendRecordDeposit(bytes32 potId, bytes encryptedNote) payable returns()
+func (_QuietShareInstructionSender *QuietShareInstructionSenderSession) SendRecordDeposit(potId [32]byte, encryptedNote []byte) (*types.Transaction, error) {
+	return _QuietShareInstructionSender.Contract.SendRecordDeposit(&_QuietShareInstructionSender.TransactOpts, potId, encryptedNote)
+}
+
+// SendRecordDeposit is a paid mutator transaction binding the contract method 0x77e57282.
+//
+// Solidity: function sendRecordDeposit(bytes32 potId, bytes encryptedNote) payable returns()
+func (_QuietShareInstructionSender *QuietShareInstructionSenderTransactorSession) SendRecordDeposit(potId [32]byte, encryptedNote []byte) (*types.Transaction, error) {
+	return _QuietShareInstructionSender.Contract.SendRecordDeposit(&_QuietShareInstructionSender.TransactOpts, potId, encryptedNote)
+}
+
+// SetExtensionId is a paid mutator transaction binding the contract method 0xaa5032c6.
+//
+// Solidity: function setExtensionId() returns()
+func (_QuietShareInstructionSender *QuietShareInstructionSenderTransactor) SetExtensionId(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _QuietShareInstructionSender.contract.Transact(opts, "setExtensionId")
+}
+
+// SetExtensionId is a paid mutator transaction binding the contract method 0xaa5032c6.
+//
+// Solidity: function setExtensionId() returns()
+func (_QuietShareInstructionSender *QuietShareInstructionSenderSession) SetExtensionId() (*types.Transaction, error) {
+	return _QuietShareInstructionSender.Contract.SetExtensionId(&_QuietShareInstructionSender.TransactOpts)
+}
+
+// SetExtensionId is a paid mutator transaction binding the contract method 0xaa5032c6.
+//
+// Solidity: function setExtensionId() returns()
+func (_QuietShareInstructionSender *QuietShareInstructionSenderTransactorSession) SetExtensionId() (*types.Transaction, error) {
+	return _QuietShareInstructionSender.Contract.SetExtensionId(&_QuietShareInstructionSender.TransactOpts)
+}

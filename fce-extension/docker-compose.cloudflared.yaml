@@ -1,0 +1,13 @@
+# cloudflared replacement for ngrok on the external ext-proxy port.
+# start-services.sh / stop-services.sh drive this for you on coston/coston2.
+name: tunnel
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    # Project name + `command:` must match every extension's copy — that is what
+    # makes them reuse one container instead of minting a new URL each time.
+    command: tunnel --no-autoupdate ${TUNNEL_ARGS:---url ${TUNNEL_TARGET:-http://host.docker.internal:6674}}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # No restart policy: a quick-tunnel restart mints a new URL and strands
+    # EXT_PROXY_URL. Named tunnel (TUNNEL_ARGS) is stable — see docs/cloudflared.md.

@@ -1,0 +1,23 @@
+# Minimal image for the LOCAL DEMO BYPASS server only (local-demo-server.ts).
+# This is NOT the real FCC extension image (see Dockerfile for that) — it runs
+# the same handler code (src/app/handlers.ts) directly over plain HTTP, skipping
+# the on-chain instruction relay, because the real relay needs Flare-internal
+# indexer infrastructure this project doesn't have access to. See README.
+FROM node:22-slim AS builder
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY tsconfig.json ./
+COPY src/ ./src/
+RUN npm run build
+RUN npm prune --omit=dev
+
+FROM node:22-slim
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+
+ENV LOCAL_DEMO_PORT=8090
+EXPOSE 8090
+CMD ["node", "dist/local-demo-server.js"]

@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  @apply bg-slate-50 text-ink;
+}
+
+/* Ambient floating shapes on the landing page. Each keyframe moves through
+   translateZ + rotate so the motion reads as drifting in 3D space, not a
+   flat slide. Only ever applied via `motion-safe:` in markup, so users who
+   set prefers-reduced-motion never see them move. */
+@keyframes float-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(28px, -34px, 50px) rotate(10deg) scale(1.08);
+  }
+}
+
+@keyframes float-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(-32px, 28px, -36px) rotate(-12deg) scale(0.94);
+  }
+}
+
+@keyframes float-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(20px, 24px, 30px) rotate(15deg);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
